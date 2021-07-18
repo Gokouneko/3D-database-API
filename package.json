@@ -1,0 +1,28 @@
+{
+  "name": "3d-database-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dataAPI.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start.dev": "nodemon dataAPI.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gokouneko/3D-database-API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gokouneko/3D-database-API/issues"
+  },
+  "homepage": "https://github.com/Gokouneko/3D-database-API#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^8.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
