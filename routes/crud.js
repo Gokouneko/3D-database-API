@@ -38,13 +38,14 @@ crud.post("/insertPlanning", function (req, res) {
     var longitude = req.body.longitude;
     var latitude = req.body.latitude;
     var name = req.body.name;
+    var height = req.body.height;
 
     var geometryString =
       "st_geomfromtext('POINT(" + longitude + " " + latitude + ")',4326)";
 
     var querystring =
-      "INSERT into uceshg0.planning (name,location) values ";
-    querystring += "($1,";
+      "INSERT into uceshg0.planning (name,height,location) values ";
+    querystring += "($1,$2,";
 
     querystring += geometryString + ")";
 
@@ -53,6 +54,7 @@ crud.post("/insertPlanning", function (req, res) {
       querystring,
       [
         name,
+        height,
       ],
       function (err, result) {
         done();

@@ -33,7 +33,7 @@ geoJSON.get("/getPlanningModel", function (req, res) {
       "(SELECT 'Feature' As type, ST_AsGeoJSON(st_transform(lg.location,4326))::json As geometry, ";
     querystring =
       querystring +
-      "row_to_json((SELECT l FROM (SELECT name) As l )) As properties FROM uceshg0.planning As lg limit 100 ) As f;";
+      "row_to_json((SELECT l FROM (SELECT planning_id,name,height) As l )) As properties FROM uceshg0.planning As lg limit 100 ) As f;";
     client.query(querystring, function (err, result) {
       done();
       if (err) {
