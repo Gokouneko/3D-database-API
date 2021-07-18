@@ -5,7 +5,7 @@ var fs = require("fs");
 crud.use(express.urlencoded({ extended: true }));
 
 var configtext =
-  "" + fs.readFileSync("/home/hanhaguo/certs/postGISConnection.js");
+  "" + fs.readFileSync("/app/certs/postGISConnection.js");
 // now convert the configruation file into the correct format -i.e. a name/value pair array
 var configarray = configtext.split(",");
 var config = {};
