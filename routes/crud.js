@@ -26,7 +26,7 @@ crud.post("/testCRUD", function (req, res) {
 });
 
 /**
- * Insert the quiz to database
+ * Insert the planning to database
  */
 crud.post("/insertPlanning", function (req, res) {
   pool.connect(function (err, client, done) {
