@@ -45,6 +45,37 @@ geoJSON.get("/getPlanningModel", function (req, res) {
   });
 });
 
+geoJSON.get("/getLDDPermission/:postCode", function (req, res) {
+  pool.connect(function (err, client, done) {
+    if (err) {
+      console.log("not able to get connection " + err);
+      res.status(400).send(err);
+    }
+
+    var postCode = "'" + req.params.postCode + " %'";
+
+    console.log(postCode);
+
+    // var querystring = "SELECT * FROM uceshg0.London_permission WHERE Post_Code LIKE $1";
+
+    var querystring =
+      ` SELECT json_agg(c) FROM 
+      (SELECT Planning_Authority,Decision_Agency,Development_Description,Site_Name_Or_Number,Subdivision_of_Building,Primary_Street_Name,Post_Code,latitude, longitude 
+        FROM uceshg0.London_permission WHERE Post_Code LIKE ${postCode} AND Current_permission_status != 'Completed') c;`;
+
+
+    console.log(querystring);
+    client.query(querystring, function (err, result) {
+      done();
+      if (err) {
+        console.log(err);
+        res.status(400).send(err);
+      }
+      res.status(200).send(result.rows);
+    });
+  });
+});
+
 
 
 
